@@ -7,6 +7,19 @@
  */
 import type { Job } from '../types/job';
 
+/** Filter jobs by department and location; empty filters match every value. */
+export function filterJobs(
+    jobs: Job[],
+    department = '',
+    location = '',
+): Job[] {
+    return jobs.filter(
+        (job) =>
+            (!department || job.department === department) &&
+            (!location || job.location === location),
+    );
+}
+
 /** Return jobs sorted by posted date, newest first (does not mutate input). */
 export function sortByNewest(jobs: Job[]): Job[] {
     return [...jobs].sort(
